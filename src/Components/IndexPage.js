@@ -15,6 +15,7 @@ const IndexPage = () => {
     type : '',
     date : ''
   })
+  const[show,setShow] = useState(false);
   function changeHandler(e){
     const newData = {...data}
     newData[e.target.name] = e.target.value
@@ -46,11 +47,15 @@ const IndexPage = () => {
     ).then(res => alert('Product Registered')).catch(err => console.log(err))
     }
   return (
-    <div>
+    <div class="myApp">
+      
         <h2>Welcome to ProductList App</h2>
-        <Link className='Link' to='/'>Submit New Item</Link>
+        <Link className='Link' to='/' onClick={() => setShow(true)}>Submit New Item</Link>
         <Link className='Link' to='/listPage'>View All Products</Link>
         <h1>Register Product</h1>
+        {
+          show?
+        
       <form onSubmit={e => submitHandler(e)}>
       <input class="col-md-6" onChange={(e) => changeHandler(e)} value={data.name} type="text" name="title" placeholder='Enter Title'/>
       <input class="col-md-6" onChange={(e) => changeHandler(e)} value={data.price} type="number" name="price" placeholder='Enter Price'/><br/>
@@ -68,8 +73,8 @@ const IndexPage = () => {
       <input class="col-md-6" onChange={(e) => changeHandler(e)} value={data.date} type="date" name="date" placeholder='Select Date'/>
       <button class="col-md-6" type="submit" onSubmit={(e) => submitHandler(e)}>Submit</button>
       <button class="col-md-6">Clear</button>
-      </form>
-  
+      </form>:null
+}
 
         
     </div>
